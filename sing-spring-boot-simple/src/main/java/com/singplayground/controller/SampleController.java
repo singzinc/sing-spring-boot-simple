@@ -1,18 +1,32 @@
-package com.singplayground.config;
+package com.singplayground.controller;
 
 import java.util.HashMap;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.singplayground.config.QuoteService;
 import com.singplayground.model.Result;
 
 @RestController
 public class SampleController {
 
+	@Bean
+	QuoteService quoteService() {
+		return new QuoteService();
+	}
+
 	@RequestMapping("/test1")
 	public String test1() {
+
+		QuoteService quoteService = quoteService();
+		Long id = new Long("1");
+		System.out.println("this is id : " + id);
+		quoteService.requestQuote(id);
+		System.out.print("");
+
 		return "test1";
 	}
 
